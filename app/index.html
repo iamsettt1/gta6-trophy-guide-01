@@ -3,23 +3,74 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GTA VI trophy checklist</title>
+<title>Leonida Trophy Guide — GTA VI · All 55 PS5 Trophies</title>
+<meta name="description" content="An offline guide and tracker for all 55 Grand Theft Auto VI trophies on PlayStation 5: cited guides, a roadmap to the platinum, missable flags, and a checklist that saves in your browser.">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-  <h1>GTA VI trophy checklist</h1>
-  <p id="progress">0 of 55 earned</p>
+<header class="masthead">
+  <div class="masthead-text">
+    <p class="kicker">Grand Theft Auto VI · PlayStation 5 · 55 trophies</p>
+    <h1>Leonida Trophy Guide</h1>
+    <p class="lede">Every trophy, its official name and description, a guide in our own words with its sources, a roadmap to the platinum — and a checklist that remembers what you have earned. Works fully offline.</p>
+  </div>
+  <div class="progress-card" aria-live="polite">
+    <p class="progress-line"><strong id="progressText">0 of 55 earned</strong> <span id="progressPct">0%</span></p>
+    <div class="progress-track"><div class="progress-fill" id="progressFill" style="width: 0%"></div></div>
+    <p class="grade-chips" id="gradeChips"></p>
+    <p class="progress-note" id="progressNote">1 platinum · 2 gold · 6 silver · 46 bronze · 28 hidden · 0 online</p>
+  </div>
 </header>
-<div class="controls">
-  <label>Grade <select id="grade"><option value="all">All</option><option value="platinum">Platinum</option><option value="gold">Gold</option><option value="silver">Silver</option><option value="bronze">Bronze</option></select></label>
-  <button id="export" type="button">Export progress</button>
-  <label class="import">Import progress <input id="import" type="file" accept="application/json"></label>
-</div>
-<table>
-  <thead><tr><th>Earned</th><th>Trophy</th><th>Grade</th><th>How to get it</th></tr></thead>
-  <tbody id="rows"></tbody>
-</table>
+
+<nav class="view-tabs" aria-label="Views">
+  <button id="tabChecklist" type="button" class="view-tab active" data-view="checklist">Checklist</button>
+  <button id="tabRoadmap" type="button" class="view-tab" data-view="roadmap">Roadmap to the platinum</button>
+</nav>
+
+<section class="controls" aria-label="Filters and progress tools">
+  <label class="search-label">Search <input id="searchBox" type="search" placeholder="Name, mission, place…" autocomplete="off"></label>
+  <div class="kind-filters" id="kindFilters" role="group" aria-label="Filter by kind"></div>
+  <label class="grade-label">Grade
+    <select id="gradeFilter">
+      <option value="all">All grades</option>
+      <option value="platinum">Platinum</option>
+      <option value="gold">Gold</option>
+      <option value="silver">Silver</option>
+      <option value="bronze">Bronze</option>
+    </select>
+  </label>
+  <label class="spoiler-label"><input id="spoilerToggle" type="checkbox"> Hide story spoilers</label>
+  <div class="tool-buttons">
+    <button id="exportBtn" type="button">Export progress</button>
+    <label class="import-label">Import progress <input id="importInput" type="file" accept="application/json,.json"></label>
+    <button id="resetBtn" type="button" class="quiet">Reset</button>
+  </div>
+  <p class="controls-note" id="controlsNote"></p>
+</section>
+
+<main>
+  <section id="checklistView" aria-label="Trophy checklist">
+    <p class="list-count" id="listCount"></p>
+    <div id="trophyList" class="trophy-list"></div>
+    <p class="empty-note" id="emptyNote" hidden>No trophies match these filters. Try clearing the search or choosing another kind — note the official list has no online trophies, so that filter is empty by design.</p>
+  </section>
+
+  <section id="roadmapView" aria-label="Roadmap to the platinum" hidden>
+    <p class="roadmap-intro">Work the stages in order. Story first, then strangers, collectibles and activities, then the 100% cleanup — the platinum follows. <strong>One trophy can be missed:</strong> Positive Mental Attitude, in Chapter 1.</p>
+    <div id="roadmapStages"></div>
+  </section>
+
+  <section id="guideView" aria-label="Trophy guide" hidden>
+    <p><button id="guideBack" type="button" class="quiet">← Back to checklist</button></p>
+    <article id="guideDetail" class="guide-detail"></article>
+  </section>
+</main>
+
+<footer>
+  <p>Official trophy names, descriptions and grades are as PlayStation publishes them. Every guide is written in our own words for this guide and cites its sources beside it. Sources open only when you follow them; this page fetches nothing at run time except its own data file.</p>
+  <p>Progress is saved in this browser only (localStorage). Export it to a file to keep a backup or move it to another browser.</p>
+</footer>
+
 <script type="module" src="app.js"></script>
 </body>
 </html>
